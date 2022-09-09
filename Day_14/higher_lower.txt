@@ -1,0 +1,43 @@
+import art
+from data_game import data
+import random
+
+
+def format_account(account):
+    account_name = account["name"]
+    account_descr = account["description"]
+    account_country =account["country"]
+    return f"{account_name},a {account_descr}, from { account_country}"
+
+
+def check_answer(guess,a_followers,b_followers):
+    if a_followers>b_followers :
+        if guess == "a":
+            return  True
+        else :
+            return False
+    else:
+        if guess == "a":
+            return False
+        else:
+            return True
+
+print(art.logo)
+account_a = random.choice(data)
+account_b = random.choice(data)
+
+if account_a == account_b:
+    account_a = random.choice(data)
+
+print(f" Compare_A:{format_account(account_a)}")
+print(art.vs)
+print(f" Compare_B:{format_account(account_b)}")
+
+guess = input(" who has more followers ? Type 'A' or 'B':").lower()
+
+if check_answer(guess, account_a["follower_count"], account_b["follower_count"]):
+    print("you win")
+else:
+    print("you lose")
+
+
